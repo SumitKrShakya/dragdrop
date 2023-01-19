@@ -1,0 +1,120 @@
+{
+    "posts": [{
+        "id": 1,
+        "title": "json-server",
+        "author": "typicode"
+    }, {
+        "id": 2,
+        "title": "json-server",
+        "author": "typicode"
+    }],
+    "comments": [
+        { "id": 1, "body": "some comment", "postId": 1 }
+    ],
+    "profile": { "name": "typicode" },
+    "data": [{
+        "id": "1",
+        "bucket": "Music",
+        "items": [{
+            "url": "",
+            "lastPlayed": "",
+            "name": "music1"
+        }, {
+            "url": "",
+            "lastPlayed": "",
+            "name": "music2"
+        }, {
+            "url": "",
+            "lastPlayed": "",
+            "name": "music3"
+        }, {
+            "url": "",
+            "lastPlayed": "",
+            "name": "music4"
+        }, {
+            "url": "",
+            "lastPlayed": "",
+            "name": "music5"
+        }, {
+            "url": "",
+            "lastPlayed": "",
+            "name": "music6"
+        }, {
+            "url": "",
+            "lastPlayed": "",
+            "name": "music7"
+        }, {
+            "url": "",
+            "lastPlayed": "",
+            "name": "music8"
+        }, {
+            "url": "",
+            "lastPlayed": "",
+            "name": "music9"
+        }]
+    }, {
+        "id": "2",
+        "bucket": "Entertainment",
+        "items": [{
+            "url": "",
+            "lastPlayed": "",
+            "name": "Entertainment1"
+        }, {
+            "url": "",
+            "lastPlayed": "",
+            "name": "Entertainment2"
+        }, {
+            "url": "",
+            "lastPlayed": "",
+            "name": "Entertainment3"
+        }]
+    }, {
+        "id": "3",
+        "bucket": "Youtube",
+        "items": [{
+            "url": "",
+            "lastPlayed": "",
+            "name": "youtube 1"
+        }, {
+            "url": "",
+            "lastPlayed": "",
+            "name": "youtube 2"
+        }, {
+            "url": "",
+            "lastPlayed": "",
+            "name": "youtube 3"
+        }]
+    }, {
+        "id": "4",
+        "bucket": "party",
+        "items": [{
+            "url": "",
+            "lastPlayed": "",
+            "name": "party 1"
+        }, {
+            "url": "",
+            "lastPlayed": "",
+            "name": "party 2"
+        }, {
+            "url": "",
+            "lastPlayed": "",
+            "name": "party 3"
+        }]
+    }, {
+        "id": "5",
+        "bucket": "sad",
+        "items": [{
+            "url": "",
+            "lastPlayed": "",
+            "name": "sad 1"
+        }, {
+            "url": "",
+            "lastPlayed": "",
+            "name": "sad 2"
+        }, {
+            "url": "",
+            "lastPlayed": "",
+            "name": "sad 3"
+        }]
+    }]
+}
