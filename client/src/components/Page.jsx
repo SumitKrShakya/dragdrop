@@ -118,7 +118,7 @@ const FormContainer = styled.div`
     float:left;
     background-color: white;
     height: 90%;
-    width: 550px;
+    width: 350px;
     margin: 10px 15px;
     border-radius: 20px;
     padding-bottom: 20px;

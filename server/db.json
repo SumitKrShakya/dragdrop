@@ -84,37 +84,5 @@
             "lastPlayed": "",
             "name": "youtube 3"
         }]
-    }, {
-        "id": "4",
-        "bucket": "party",
-        "items": [{
-            "url": "",
-            "lastPlayed": "",
-            "name": "party 1"
-        }, {
-            "url": "",
-            "lastPlayed": "",
-            "name": "party 2"
-        }, {
-            "url": "",
-            "lastPlayed": "",
-            "name": "party 3"
-        }]
-    }, {
-        "id": "5",
-        "bucket": "sad",
-        "items": [{
-            "url": "",
-            "lastPlayed": "",
-            "name": "sad 1"
-        }, {
-            "url": "",
-            "lastPlayed": "",
-            "name": "sad 2"
-        }, {
-            "url": "",
-            "lastPlayed": "",
-            "name": "sad 3"
-        }]
     }]
 }
