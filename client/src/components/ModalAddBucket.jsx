@@ -2,7 +2,13 @@ import React from 'react'
 
 const ModalAddBucket = () => {
   return (
-    <div>ModalAddBucket</div>
+    <div className="bg">
+      <div className="modal">
+        <form action="">
+          
+        </form>
+      </div>
+    </div>
   )
 }
 

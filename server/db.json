@@ -1,88 +1,119 @@
 {
-    "posts": [{
-        "id": 1,
-        "title": "json-server",
-        "author": "typicode"
-    }, {
-        "id": 2,
-        "title": "json-server",
-        "author": "typicode"
-    }],
-    "comments": [
-        { "id": 1, "body": "some comment", "postId": 1 }
-    ],
-    "profile": { "name": "typicode" },
-    "data": [{
-        "id": "1",
-        "bucket": "Music",
-        "items": [{
-            "url": "",
-            "lastPlayed": "",
-            "name": "music1"
-        }, {
-            "url": "",
-            "lastPlayed": "",
-            "name": "music2"
-        }, {
-            "url": "",
-            "lastPlayed": "",
-            "name": "music3"
-        }, {
-            "url": "",
-            "lastPlayed": "",
-            "name": "music4"
-        }, {
-            "url": "",
-            "lastPlayed": "",
-            "name": "music5"
-        }, {
-            "url": "",
-            "lastPlayed": "",
-            "name": "music6"
-        }, {
-            "url": "",
-            "lastPlayed": "",
-            "name": "music7"
-        }, {
-            "url": "",
-            "lastPlayed": "",
-            "name": "music8"
-        }, {
-            "url": "",
-            "lastPlayed": "",
-            "name": "music9"
-        }]
-    }, {
-        "id": "2",
-        "bucket": "Entertainment",
-        "items": [{
-            "url": "",
-            "lastPlayed": "",
-            "name": "Entertainment1"
-        }, {
-            "url": "",
-            "lastPlayed": "",
-            "name": "Entertainment2"
-        }, {
-            "url": "",
-            "lastPlayed": "",
-            "name": "Entertainment3"
-        }]
-    }, {
-        "id": "3",
-        "bucket": "Youtube",
-        "items": [{
-            "url": "",
-            "lastPlayed": "",
-            "name": "youtube 1"
-        }, {
-            "url": "",
-            "lastPlayed": "",
-            "name": "youtube 2"
-        }, {
-            "url": "",
-            "lastPlayed": "",
-            "name": "youtube 3"
-        }]
-    }]
+  "data": [
+    {
+      "id": 1,
+      "bucket": "Music",
+      "items": [
+        {
+          "url": "https://www.youtube.com/watch?v=Tnfs0MZsBBE",
+          "lastPlayed": "",
+          "name": "music12"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=Tnfs0MZsBBE",
+          "lastPlayed": "",
+          "name": "7"
+        },
+        {
+          "url": "",
+          "lastPlayed": "",
+          "name": "music0"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=Tnfs0MZsBBE",
+          "lastPlayed": "",
+          "name": "6"
+        },
+        {
+          "url": "",
+          "lastPlayed": "",
+          "name": "music8"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=Tnfs0MZsBBE",
+          "lastPlayed": "",
+          "name": "8"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=Tnfs0MZsBBE",
+          "lastPlayed": "",
+          "name": "9"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "bucket": "Entertainment",
+      "items": [
+        {
+          "url": "",
+          "lastPlayed": "",
+          "name": "music7"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=Tnfs0MZsBBE",
+          "lastPlayed": "",
+          "name": "music11"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=Tnfs0MZsBBE",
+          "lastPlayed": "",
+          "name": "mus"
+        },
+        {
+          "url": "",
+          "lastPlayed": "",
+          "name": "music6"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "bucket": "Youtube",
+      "items": [
+        {
+          "url": "",
+          "lastPlayed": "",
+          "name": "music9"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "name": "SUMIT KUMAR SHAKYA",
+      "lastPlayed": "2023-1-20 21:30:15",
+      "id": 1
+    },
+    {
+      "name": "Entertainment3",
+      "lastPlayed": "2023-1-20 21:52:50",
+      "id": 2
+    },
+    {
+      "name": "music1",
+      "lastPlayed": "2023-1-20 21:52:57",
+      "id": 3
+    },
+    {
+      "name": "youtube 2",
+      "lastPlayed": "2023-1-20 21:54:25",
+      "id": 4
+    },
+    {
+      "name": "SUMIT KUMAR SHAKYA",
+      "lastPlayed": "2023-1-21 11:8:22",
+      "id": 5
+    },
+    {
+      "name": "Entertainment3",
+      "lastPlayed": "2023-1-21 11:8:26",
+      "id": 6
+    },
+    {
+      "name": "Entertainment1",
+      "lastPlayed": "2023-1-21 11:8:29",
+      "id": 7
+    }
+  ]
 }

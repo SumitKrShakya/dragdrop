@@ -2,21 +2,21 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import {BsFillPlayFill} from 'react-icons/bs'
+import { BsFillPlayFill } from "react-icons/bs";
 
-const Page = () => {
-  const [data, setData] = useState(null);
-  useEffect(() => {
-    const call = async () => {
-      const d = await axios.get("http://localhost:3000/data");
-      console.log(d.data);
-      setData(d.data);
-    };
-    call();
-  }, []);
+const Page = ({ handlePlayer, data, setData }) => {
+  // const [data, setData] = useState(null);
+  // useEffect(() => {
+  //   const call = async () => {
+  //     const d = await axios.get("http://localhost:3000/data");
+  //     console.log(d.data);
+  //     setData(d.data);
+  //   };
+  //   call();
+  // }, []);
 
-  const handleOnDragEnd = (result) => {
-    if(!result.destination)return
+  const handleOnDragEnd = async (result) => {
+    if (!result.destination) return;
     console.log(result);
     const tempData = Array.from(data);
     console.log(tempData, result.source, result.source.droppableId - 1);
@@ -24,35 +24,79 @@ const Page = () => {
       result.source.index,
       1
     );
+
     tempData[result.destination.droppableId - 1].items.splice(
       result.destination.index,
       0,
       moveItem
     );
 
-    call(tempData)
+    const temp1 = await axios.put(
+      `http://localhost:3000/data/${result.source.droppableId}`,
+      tempData[result.source.droppableId - 1]
+    );
+    const temp2 = await axios.put(
+      `http://localhost:3000/data/${result.destination.droppableId}`,
+      tempData[result.destination.droppableId - 1]
+    );
+    // call(tempData)
   };
-  const call = async (tempData) => {
-    const result = await axios.put('http://localhost:3000/data',tempData)
-  }
-  const handleOnPlay = () =>{
+  // const call = async (tempData) => {
+  //   const result = await axios.put('http://localhost:3000/data',tempData)
+  // }
+  const handleOnPlay = (bucket, item) => {
+    handlePlayer(bucket, item);
+  };
+  let selected = [];
+  const handleCheckbox = (e) => {
+    let i = e.target.name.split("-").map((num) => parseInt(num));
+    selected.push(i);
+    console.log(selected);
+  };
 
-  }
+  const deleteSelected = () => {
+    if (selected.length === 0) return;
+    console.log(selected);
+    const tempData = Array.from(data)
+    selected.map(async (i) => {
+      console.log(i);
+      tempData[i[0]].items.splice(i[1],1)
+      console.log("here----->",`http://localhost:3000/data/${i[0]+1}`,tempData)
+      let response = await axios.put(
+        `http://localhost:3000/data/${i[0]+1}`,
+        tempData[i[0]]
+      )
+      setData(tempData)
+      return;
+    });
+  };
 
   return (
     <DragDropContext onDragEnd={handleOnDragEnd}>
       <FormContainer>
         {data === null ? (
-          <div className="div"><h1>Loading...</h1></div>
+          <div className="div">
+            <h1>Loading...</h1>
+          </div>
         ) : (
-          data.map((oneBucket,i) => {
+          data.map((oneBucket, ib) => {
             console.log(oneBucket);
+            if (!oneBucket.items.length) {
+              return null;
+            }
             return (
-              <Droppable key={`${oneBucket.bucket}-${i}`} className="buckets" droppableId={oneBucket.id}>
+              <Droppable
+                key={`${oneBucket.bucket}-${ib}`}
+                className="buckets"
+                droppableId={oneBucket.id.toString()}
+              >
                 {(provided, snapshot) => {
                   return (
                     // <Draggable>
-                    <div className="buckets" key={`${oneBucket.bucket}-${oneBucket.id}`}>
+                    <div
+                      className="buckets"
+                      key={`${oneBucket.bucket}-${oneBucket.id}`}
+                    >
                       <div className="headding">
                         <h2>{oneBucket.bucket}</h2>
                       </div>
@@ -77,9 +121,31 @@ const Page = () => {
                                     className="item"
                                     key={`${oneBucket.bucket}-${item.name}second`}
                                   >
-                                    <div onClick={handleOnPlay} className="playButton"><BsFillPlayFill  style={{fontSize:'30px'}}/></div>
+                                    <div
+                                      onClick={() => handleOnPlay(ib, i)}
+                                      className="playButton"
+                                    >
+                                      <BsFillPlayFill
+                                        style={{ fontSize: "30px" }}
+                                      />
+                                    </div>
+                                    <button onClick={deleteSelected}>
+                                      delete
+                                    </button>
+
                                     <div className="itemName">{item.name}</div>
-                                    <div className="itemSelect"><input style={{width:"20px",height:"20px"}} type="checkbox" name="vehicle1" value="Bike"/></div>
+                                    <div className="itemSelect">
+                                      <input
+                                        style={{
+                                          width: "20px",
+                                          height: "20px",
+                                        }}
+                                        onChange={handleCheckbox}
+                                        type="checkbox"
+                                        name={`${ib}-${i}`}
+                                        value="Bike"
+                                      />
+                                    </div>
                                   </div>
                                 );
                               }}
@@ -112,11 +178,11 @@ const FormContainer = styled.div`
   // display:grid;
   // grid-template-columns  :auto auto;
   background-color: "#e9e9e9";
-  
 
   .buckets {
-    float:left;
-    background-color: white;
+    float: left;
+    background-color: rgba(255, 255, 255, 0.5);
+    // backdrop-filter: blur(40px);
     height: 90%;
     width: 350px;
     margin: 10px 15px;
@@ -140,7 +206,8 @@ const FormContainer = styled.div`
     padding-top: 7%;
     // line-height:15%;
     border-radius: 20px 20px 0px 0px;
-    background-color: #0000ff8f;
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(40px);
   }
   .items {
     height: 85%;
@@ -160,29 +227,30 @@ const FormContainer = styled.div`
   .item {
     margin: 0px 0px 0px 10px;
     height: 13%;
-    display:flex;
-    justify-content:space-around;
-    align-items:center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     box-sizing: border-box;
     border: 1px black solid;
     border-width: 1px 0px 1px 0px;
-    .playButton{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      flex:1
+    .playButton {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1;
+      cursor: pointer;
     }
-    .itemName{
-      display:flex;
-      justify-content:flex-start;
-      align-items:center;
-      flex:4;
+    .itemName {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      flex: 4;
     }
-    .itemSelect{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      flex:1;
+    .itemSelect {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1;
     }
   }
 `;
