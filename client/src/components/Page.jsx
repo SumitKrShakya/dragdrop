@@ -3,6 +3,7 @@ import styled from "styled-components";
 import axios from "axios";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { BsFillPlayFill } from "react-icons/bs";
+import { Input, Button } from "antd";
 
 const Page = ({ handlePlayer, data, setData }) => {
   // const [data, setData] = useState(null);
@@ -44,12 +45,26 @@ const Page = ({ handlePlayer, data, setData }) => {
   // const call = async (tempData) => {
   //   const result = await axios.put('http://localhost:3000/data',tempData)
   // }
+
   const handleOnPlay = (bucket, item) => {
     handlePlayer(bucket, item);
   };
-  let selected = [];
+  const [selected, setSelected] = useState([])
+  // let selected = [];
   const handleCheckbox = (e) => {
+    if(!e.target.checked){
+      let i = e.target.name.split("-").map((num) => parseInt(num));
+      console.log("delete", i,"here", selected, selected.filter((item) => {
+        console.log(item, i, JSON.stringify(item) !== JSON.stringify(i))
+        return JSON.stringify(item) !== JSON.stringify(i)}))
+      setSelected(selected.filter((item) => {
+        console.log(item, i, JSON.stringify(item) !== JSON.stringify(i))
+        return JSON.stringify(item) !== JSON.stringify(i)}))
+      return;
+    }
+    console.log(e.target.checked, e.target.name)
     let i = e.target.name.split("-").map((num) => parseInt(num));
+    setSelected([...selected,i])
     selected.push(i);
     console.log(selected);
   };
@@ -57,16 +72,20 @@ const Page = ({ handlePlayer, data, setData }) => {
   const deleteSelected = () => {
     if (selected.length === 0) return;
     console.log(selected);
-    const tempData = Array.from(data)
+    const tempData = Array.from(data);
     selected.map(async (i) => {
       console.log(i);
-      tempData[i[0]].items.splice(i[1],1)
-      console.log("here----->",`http://localhost:3000/data/${i[0]+1}`,tempData)
+      tempData[i[0]].items.splice(i[1], 1);
+      console.log(
+        "here----->",
+        `http://localhost:3000/data/${i[0] + 1}`,
+        tempData
+      );
       let response = await axios.put(
-        `http://localhost:3000/data/${i[0]+1}`,
+        `http://localhost:3000/data/${i[0] + 1}`,
         tempData[i[0]]
-      )
-      setData(tempData)
+      );
+      setData(tempData);
       return;
     });
   };
@@ -129,9 +148,9 @@ const Page = ({ handlePlayer, data, setData }) => {
                                         style={{ fontSize: "30px" }}
                                       />
                                     </div>
-                                    <button onClick={deleteSelected}>
+                                    {/* <button onClick={deleteSelected}>
                                       delete
-                                    </button>
+                                    </button> */}
 
                                     <div className="itemName">{item.name}</div>
                                     <div className="itemSelect">
@@ -161,6 +180,15 @@ const Page = ({ handlePlayer, data, setData }) => {
               </Droppable>
             );
           })
+        )}
+        {selected.length > 0 && (
+          <Button
+            danger
+            style={{ position: "absolute", left: "20px", top: "15vh" }}
+            onClick={deleteSelected}
+          >
+            Delete Selected Items
+          </Button>
         )}
       </FormContainer>
     </DragDropContext>

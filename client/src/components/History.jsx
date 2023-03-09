@@ -54,6 +54,22 @@ const FormContainer = styled.div`
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: 10px;
     postion:relative;
+    padding:10px;
+    &::-webkit-scrollbar {
+      width: 5px;
+      color:grey;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: grey;
+      border-radius: 10px;
+    }
+    .item{
+      display:flex;
+      justify-content:space-between;
+      width:100%;
+      padding:10px 20px;
+      border-bottom:1px solid black;
+    }
     button{
       position:absolute;
       bottom:50px;

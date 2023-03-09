@@ -1,8 +1,12 @@
 import axios from "axios";
 import React, { useState } from "react";
 import styled from "styled-components";
+import { Input, Select, Button } from "antd";
+import { UserOutlined } from "@ant-design/icons";
+const { Option } = Select;
 
 const ModalAddElement = ({ handleAdd, data }) => {
+
   const [addBucket, setAddBucket] = useState(false);
   const [name, setName] = useState("");
   const [URL, setURL] = useState("");
@@ -36,10 +40,10 @@ const ModalAddElement = ({ handleAdd, data }) => {
     handleAdd();
   };
 
-  const checkAddBucket = (event) => {
-    console.log(event.target.value);
-    setOption(event.target.value);
-    if (data.length + 1 == event.target.value) {
+  const checkAddBucket = (value) => {
+    console.log(value)
+    setOption(value);
+    if (data.length + 1 == value) {
       setAddBucket(true);
     } else {
       setAddBucket(false);
@@ -50,7 +54,21 @@ const ModalAddElement = ({ handleAdd, data }) => {
     <FormContainer className="bg">
       <div className="modal">
         <form onSubmit={handleSubmit}>
-          <label>Name </label>
+          <Input
+            onChange={(e) => {
+              return setName(e.target.value);
+            }}
+            value={name}
+            required
+            type="text"
+            name="name"
+            size="large"
+            placeholder="Enter Name of the Video"
+            prefix={<UserOutlined />}
+            style={{ margin:"10px"}}
+          />
+
+          {/* <label>Name </label>
           <input
             onChange={(e) => {
               return setName(e.target.value);
@@ -59,9 +77,23 @@ const ModalAddElement = ({ handleAdd, data }) => {
             required
             type="text"
             name="name"
-          />
+          /> */}
           <br />
-          <label>URL </label>
+          <Input
+            onChange={(e) => {
+              return setURL(e.target.value);
+            }}
+            value={URL}
+            required
+            type="url"
+            name="URL"
+            size="large"
+            placeholder="Enter URL of the Video"
+            prefix={<UserOutlined />}
+            style={{ margin:"10px"}}
+
+          />
+          {/* <label>URL </label>
           <input
             onChange={(e) => {
               return setURL(e.target.value);
@@ -70,9 +102,24 @@ const ModalAddElement = ({ handleAdd, data }) => {
             required
             type="url"
             name="URL"
-          />
+          /> */}
           <br />
-          <label>bucket </label>
+          <Select size="large" onChange={checkAddBucket} required name="bucketSelect" id="temp" defaultValue="select Bucket" style={{width:"100%", margin:"10px"}}>
+            {/* <Option value="Option1-1">Option1-1</Option>
+            <Option value="Option1-2">Option1-2</Option> */}
+            {data.map((bucket, i, n) => {
+              return (
+                <Option id={i} value={bucket.id}>
+                  {bucket.bucket}
+                </Option>
+              )
+            })}
+            <Option id={data.length + 1} value={data.length + 1}>
+              Create New
+            </Option>
+          </Select>
+
+          {/* <label>bucket </label>
           <select onChange={checkAddBucket} required name="bucketSelect" id="">
             {data.map((bucket, i, n) => {
               return (
@@ -84,9 +131,27 @@ const ModalAddElement = ({ handleAdd, data }) => {
             <option id={data.length + 1} value={data.length + 1}>
               Create New
             </option>
-          </select>
+          </select> */}
           <br />
-          {addBucket ? (
+
+          {
+            addBucket ? (
+              <Input
+                onChange={(e) => {
+                  return setaddBucketName(e.target.value);
+                }}
+                value={addBucketName}
+                name="newBucketName"
+                required
+                type="text"
+                size="large"
+                plaveholder="Enter Name of the Bucket"
+                style={{ margin:"10px"}}
+                />
+            ):null
+          }
+
+          {/* {addBucket ? (
             <>
               <label>New Bucket Name </label>
               <input
@@ -98,10 +163,10 @@ const ModalAddElement = ({ handleAdd, data }) => {
                 required
               />
             </>
-          ) : null}
+          ) : null} */}
           <br />
-          <button onClick={handleAdd}>Cancel</button>
-          <button type="submit">Add</button>
+          <Button style={{margin:"10px"}}  onClick={handleAdd}>Cancel</Button>
+          <button style={{padding: "5px 16px",color: "#000000d9",border: "1px solid #d9d9d9",backgroundColor: "transparent", borderRadius: "2px", lineHeight: "1.4", boxShadow: "0 2px #00000004",cursor: "pointer",transition: ".3s",margin:"10px",backgroundColor:"white",borderRadius:"5px", border:"1px solid green"}} type="submit">Add</button>
         </form>
       </div>
     </FormContainer>
@@ -120,10 +185,19 @@ const FormContainer = styled.div`
   backdrop-filter: blur(3px);
   transition: all 1s ease;
   .modal {
-    height: 70%;
-    width: 50%;
+    height: 50%;
+    width: 30%;
+    min-width: 300px;
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+
   }
+  // Input{
+  //   margin: 10px 0px;
+  // }
 `;
 export default ModalAddElement;
