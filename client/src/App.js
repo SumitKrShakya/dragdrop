@@ -21,7 +21,7 @@ function App() {
 
   useEffect(() => {
     const call = async () => {
-      const d = await axios.get("http://localhost:3000/data");
+      const d = await axios.get("https://drag-drop-6ysf.onrender.com/data");
       console.log(d.data);
       setData(d.data);
     };

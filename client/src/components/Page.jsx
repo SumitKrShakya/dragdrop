@@ -9,7 +9,7 @@ const Page = ({ handlePlayer, data, setData }) => {
   // const [data, setData] = useState(null);
   // useEffect(() => {
   //   const call = async () => {
-  //     const d = await axios.get("http://localhost:3000/data");
+  //     const d = await axios.get("https://drag-drop-6ysf.onrender.com/data");
   //     console.log(d.data);
   //     setData(d.data);
   //   };
@@ -33,17 +33,17 @@ const Page = ({ handlePlayer, data, setData }) => {
     );
 
     const temp1 = await axios.put(
-      `http://localhost:3000/data/${result.source.droppableId}`,
+      `https://drag-drop-6ysf.onrender.com/data/${result.source.droppableId}`,
       tempData[result.source.droppableId - 1]
     );
     const temp2 = await axios.put(
-      `http://localhost:3000/data/${result.destination.droppableId}`,
+      `https://drag-drop-6ysf.onrender.com/data/${result.destination.droppableId}`,
       tempData[result.destination.droppableId - 1]
     );
     // call(tempData)
   };
   // const call = async (tempData) => {
-  //   const result = await axios.put('http://localhost:3000/data',tempData)
+  //   const result = await axios.put('https://drag-drop-6ysf.onrender.com/data',tempData)
   // }
 
   const handleOnPlay = (bucket, item) => {
@@ -78,11 +78,11 @@ const Page = ({ handlePlayer, data, setData }) => {
       tempData[i[0]].items.splice(i[1], 1);
       console.log(
         "here----->",
-        `http://localhost:3000/data/${i[0] + 1}`,
+        `https://drag-drop-6ysf.onrender.com/data/${i[0] + 1}`,
         tempData
       );
       let response = await axios.put(
-        `http://localhost:3000/data/${i[0] + 1}`,
+        `https://drag-drop-6ysf.onrender.com/data/${i[0] + 1}`,
         tempData[i[0]]
       );
       setData(tempData);

@@ -16,7 +16,7 @@ const Player = ({ data, bucket, item, handlePlayer }) => {
         "lastPlayed":dateTime
     })
     const  call = async()=>{
-        const response = await axios.post(`http://localhost:3000/history`,{
+        const response = await axios.post(`https://drag-drop-6ysf.onrender.com/history`,{
             "name":data[bucket].items[item].name,
             "lastPlayed":dateTime
         })

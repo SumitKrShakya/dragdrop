@@ -6,7 +6,7 @@ const History = ({handleHistory}) => {
   const [data, setData] = useState(null);
   useEffect(() => {
     const call = async () => {
-      const res = await axios.get(`http://localhost:3000/history`);
+      const res = await axios.get(`https://drag-drop-6ysf.onrender.com/history`);
       setData(res.data);
     };
     call();

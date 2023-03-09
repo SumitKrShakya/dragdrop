@@ -24,7 +24,7 @@ const ModalAddElement = ({ handleAdd, data }) => {
         bucket: addBucketName,
         items: [{ url: URL, lastPlayed: "", name: name }],
       };
-      const temp = await axios.post(`http://localhost:3000/data`, newData);
+      const temp = await axios.post(`https://drag-drop-6ysf.onrender.com/data`, newData);
     } else {
       const newData = {
         bucket: addBucketName,
@@ -33,7 +33,7 @@ const ModalAddElement = ({ handleAdd, data }) => {
       const tempData = Array.from(data);
       tempData[option - 1].items.push({ url: URL, lastPlayed: "", name: name });
       const temp = await axios.put(
-        `http://localhost:3000/data/${option}`,
+        `https://drag-drop-6ysf.onrender.com/data/${option}`,
         tempData[option - 1]
       );
     }
